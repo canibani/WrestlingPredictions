@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="wrestlingpredictions.client/wrestlingpredictions.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="WrestlingPredictions.Server/WrestlingPredictions.Server.csproj" />
+</Solution>
