@@ -20,10 +20,22 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getForecasts();
+    this.getMatch();
   }
 
   getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
+    this.http.get<WeatherForecast[]>('/api/weatherforecast').subscribe(
+      (result) => {
+        this.forecasts = result;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getMatch() {
+    this.http.get<any>('/api/match').subscribe(
       (result) => {
         this.forecasts = result;
       },
