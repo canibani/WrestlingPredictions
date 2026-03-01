@@ -164,3 +164,6 @@ C:\Users\Can Ugurlu\source\repos\WrestlingPredictions\WrestlingPredictions.Serve
 C:\Users\Can Ugurlu\source\repos\WrestlingPredictions\WrestlingPredictions.Server\bin\Debug\net10.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Can Ugurlu\source\repos\WrestlingPredictions\WrestlingPredictions.Server\bin\Debug\net10.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Can Ugurlu\source\repos\WrestlingPredictions\WrestlingPredictions.Server\bin\Debug\net10.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Can Ugurlu\source\repos\WrestlingPredictions\WrestlingPredictions.Server\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Can Ugurlu\source\repos\WrestlingPredictions\WrestlingPredictions.Server\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Can Ugurlu\source\repos\WrestlingPredictions\WrestlingPredictions.Server\bin\Debug\net10.0\Swashbuckle.AspNetCore.Annotations.dll

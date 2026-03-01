@@ -3,8 +3,8 @@
     public class Prediction
     {
         public Guid Id { get; set; }
-        public User User { get; set; }
-        public Match Match { get; set; }
-        public int Result { get; set; }
+        public Guid UserId { get; set; }
+        public Guid MatchId { get; set; }
+        public Guid TeamId { get; set; }
     }
 }

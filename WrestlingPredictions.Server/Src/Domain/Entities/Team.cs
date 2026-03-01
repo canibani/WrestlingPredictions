@@ -4,6 +4,6 @@
     {
         public Guid Id { get; set; }
         public string? TeamName { get; set; }
-        public ICollection<Participant> Participant { get; set; } = [];
+        public List<Participant> Participants { get; set; } = [];
     }
 }

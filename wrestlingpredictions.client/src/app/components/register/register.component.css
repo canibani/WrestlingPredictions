@@ -1,0 +1,15 @@
+.register-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1f1f1f, #343a40);
+}
+
+.register-card {
+  background: white;
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 12px;
+}

@@ -1,0 +1,54 @@
+.match-card {
+  padding: 1rem;
+}
+
+.match-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.match-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #f9f9f9;
+}
+
+.wrestlers {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.vs {
+  margin: 0 0.5rem;
+  color: #666;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.details {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.teams {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.team {
+  text-align: center;
+}
+
+.save-section {
+  margin-top: 20px;
+  text-align: right;
+}
