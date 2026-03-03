@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WrestlingPredictions.Server.DTOs;
-using WrestlingPredictions.Server.DTOs.Authentication;
 using WrestlingPredictions.Server.Src.Domain.Entities;
 
 namespace WrestlingPredictions.Server.Controllers
@@ -20,6 +19,8 @@ namespace WrestlingPredictions.Server.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
+
         public async Task<ActionResult<bool>> SavePredictions([FromBody] List<MatchWithPredictionDto> dto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

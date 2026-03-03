@@ -13,14 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<TokenService>();
 
-
 builder.Services.AddDbContext<WPDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
-//builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-//    .AddEntityFrameworkStores<WPDbContext>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<WPDbContext>();
 
@@ -46,7 +43,7 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.Zero
     };
 });
-//builder.Services.AddAuthorization();
+builder.Services.AddAuthorization();
 
 builder.Services.AddControllers();
 
@@ -84,6 +81,9 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.MapStaticAssets();
 
+IdentityRoles.AddRolesAsync(app);
+IdentityRoles.AddAdmin(app);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 { 
@@ -94,7 +94,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapControllers();
 

@@ -1,3 +1,5 @@
+<div *ngIf="authService.hasRole('Admin')">test</div>
+
 <div class="event-list">
   <div *ngFor="let event of events; trackBy: trackByEventId"
        class="event-item"

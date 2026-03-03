@@ -40,6 +40,8 @@ namespace WrestlingPredictions.Server.Controllers
 
             var result = await _userManager.CreateAsync(user, dto.Password);
 
+            await _userManager.AddToRoleAsync(user, "User");
+
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
@@ -65,12 +67,11 @@ namespace WrestlingPredictions.Server.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim("userId", user.Id),
+                new Claim("email", user.Email)
             };
 
-            foreach (var role in roles)
-                claims.Add(new Claim(ClaimTypes.Role, role));
+            claims.AddRange(roles.Select(role => new Claim("role", role)));
 
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_config["Jwt:Key"]));

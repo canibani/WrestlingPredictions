@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using WrestlingPredictions.Server.DTOs;
 using WrestlingPredictions.Server.Src.Domain.Entities;
@@ -10,7 +8,6 @@ using WrestlingPredictions.Server.Src.Domain.Entities;
 namespace WrestlingPredictions.Server.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
     [ApiController]
     public class EventController : ControllerBase
     {
@@ -23,12 +20,10 @@ namespace WrestlingPredictions.Server.Controllers
 
         // GET: api/events
         [HttpGet]
+        [Authorize(Roles = "User, Admin")]
         public async Task<ActionResult<IEnumerable<Event>>> GetAllEvents()
         {
             var eventEntities = await _context.Events
-                //.Include(e => e.Matches)
-                //    .ThenInclude(m => m.Teams)
-                //        .ThenInclude(t => t.Participants)
                 .ToListAsync();
 
             return Ok(eventEntities);
@@ -36,6 +31,7 @@ namespace WrestlingPredictions.Server.Controllers
 
         // GET: api/events/{id}
         [HttpGet("{id}")]
+        [Authorize(Roles = "User, Admin")]
         public async Task<ActionResult<EventDto>> GetEventById(Guid id)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -79,6 +75,7 @@ namespace WrestlingPredictions.Server.Controllers
 
         // POST: api/event
         [HttpPost]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult<Event>> CreateEvent([FromBody] Event newEvent)
         {
             if (!ModelState.IsValid)
@@ -95,6 +92,7 @@ namespace WrestlingPredictions.Server.Controllers
         }
 
         [HttpPost("{eventId}/matches")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddMatch(Guid eventId, CreateMatchDto dto)
         {
             var eventEntity = await _context.Events

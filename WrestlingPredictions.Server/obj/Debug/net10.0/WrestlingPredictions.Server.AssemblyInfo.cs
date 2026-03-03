@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WrestlingPredictions.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c27b30c5bb5c526efb8d8b862a1d7eaced79069")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2580c2b26374e60f872c6249df57e312e5ae7e64")]
 [assembly: System.Reflection.AssemblyProductAttribute("WrestlingPredictions.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WrestlingPredictions.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

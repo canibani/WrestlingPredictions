@@ -14,7 +14,6 @@ export class AuthenticationService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
   private tokenKey = 'auth_token';
-  private accessToken: string | null = "";
   constructor(private http: HttpClient) { }
 
   // Change to sign in later
@@ -40,13 +39,6 @@ export class AuthenticationService {
     localStorage.setItem(this.tokenKey, token);
     this.startExpiryTimer(token);
   }
-  //logout(): Observable<any> {
-  //  return this.http.post(
-  //    `${this.apiUrl}/logout`,
-  //    {},
-  //    { withCredentials: true }
-  //  );
-  //}
 
   isLoggedIn(): boolean {
     return !!this.getToken();
@@ -56,10 +48,35 @@ export class AuthenticationService {
     localStorage.removeItem(this.tokenKey);
   }
 
-
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
+
+  getDecodedToken(): JwtPayload | null {
+    const token = this.getToken();
+    if (!token) return null;
+
+    return jwtDecode<JwtPayload>(token);
+  }
+
+  getUserRoles(): string[] {
+    const decoded = this.getDecodedToken();
+    console.log(decoded)
+    if (!decoded?.role) return [];
+
+    return Array.isArray(decoded.role)
+      ? decoded.role
+      : [decoded.role];
+  }
+
+  hasRole(role: string): boolean {
+    return this.getUserRoles().includes(role);
+  }
+
+  isAdmin(): boolean {
+    return this.hasRole('Admin');
+  }
+
   logoutTimer: any;
 
   startExpiryTimer(token: string) {
@@ -80,10 +97,12 @@ export class AuthenticationService {
   }
 }
 
-
 export interface LoginResponse {
   accessToken: string;
 }
 interface JwtPayload {
+  nameid: string;
+  email: string;
+  role?: string | string[];
   exp: number;
 }

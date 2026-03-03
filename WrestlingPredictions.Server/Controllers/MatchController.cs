@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WrestlingPredictions.Server;
 using WrestlingPredictions.Server.Src.Domain.Entities;
@@ -16,6 +17,7 @@ public class MatchController : ControllerBase
 
     // GET /Match
     [HttpGet]
+    [Authorize(Roles = "User")]
     public async Task<ActionResult<IEnumerable<Match>>> Get()
     {
         var matches = await _context.Matches
@@ -28,6 +30,7 @@ public class MatchController : ControllerBase
 
     // PUT /Match/{matchId}/winner/{winnerTeamId}
     [HttpPut("{matchId}/winner/{winnerTeamId}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> SetWinnerAsync(Guid matchId, Guid winnerTeamId)
     {
         var match = await _context.Matches
@@ -42,11 +45,6 @@ public class MatchController : ControllerBase
 
         if (winnerTeam is null)
             return BadRequest("Team does not belong to this match.");
-
-        //if (match.Winner is not null)
-        //    return Conflict("Winner has already been set.");
-
-        //match.Winner = winnerTeam;
 
         await _context.SaveChangesAsync();
         return Ok();

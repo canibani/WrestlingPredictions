@@ -28,9 +28,7 @@ export class MatchCardComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
-    if (this.eventId) {
-      this.loadMatches();
-    }
+
   }
 
   trackByMatchId(index: number, match: MatchesWithPredictions): string {
