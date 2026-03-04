@@ -480,4 +480,11 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-/WrestlingPredictions.Server/obj/Debug/net10.0/ref/WrestlingPredictions.Server.dll
+
+############################
+# SOLUTION-SPECIFIC
+############################
+/WrestlingPredictions.Server/bin
+/wrestlingpredictions.client/bin
+/wrestlingpredictions.client/obj
+/WrestlingPredictions.Server/obj
