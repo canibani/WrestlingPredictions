@@ -9,17 +9,17 @@ import { Register } from '../../models/authentication/register.model';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private apiUrl = 'https://localhost:59547/api/authentication';
-
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
   private tokenKey = 'auth_token';
+  logoutTimer: any;
+
   constructor(private http: HttpClient) { }
 
   // Change to sign in later
   register(request: Register): Observable<any> {
     return this.http.post(
-      `${this.apiUrl}/register`,
+      `/api/authentication/register`,
       request,
       { withCredentials: true }
     );
@@ -27,7 +27,7 @@ export class AuthenticationService {
 
   login(request: Login): Observable<any> {
     return this.http.post<LoginResponse>(
-      `${this.apiUrl}/login`,
+      `/api/authentication/login`,
       request,
       { withCredentials: true }
     ).pipe(
@@ -61,7 +61,6 @@ export class AuthenticationService {
 
   getUserRoles(): string[] {
     const decoded = this.getDecodedToken();
-    console.log(decoded)
     if (!decoded?.role) return [];
 
     return Array.isArray(decoded.role)
@@ -77,12 +76,10 @@ export class AuthenticationService {
     return this.hasRole('Admin');
   }
 
-  logoutTimer: any;
-
   startExpiryTimer(token: string) {
     const decoded = jwtDecode<JwtPayload>(token);
 
-    const expiresAt = decoded.exp * 1000; // convert to ms
+    const expiresAt = decoded.exp * 1000;
     const timeout = expiresAt - Date.now();
 
     if (timeout <= 0) {

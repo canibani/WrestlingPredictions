@@ -3,7 +3,8 @@
   <div class="left">
     <app-event-list [events]="events"
                     [selectedEventId]="selectedEvent?.id ?? null"
-                    (eventSelected)="onEventSelected($event)">
+                    (eventSelected)="onEventSelected($event)"
+                    (eventCreated)="loadEvents()">
     </app-event-list>
   </div>
 

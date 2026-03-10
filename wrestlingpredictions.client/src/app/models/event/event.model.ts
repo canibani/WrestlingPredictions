@@ -1,8 +1,8 @@
-import { Match } from "../match/match.model";
+import { MatchDto } from "../match/match.model";
 
-export interface Event {
+export interface PredictionEvent {
   id: string;
   name: string | undefined;
   promotion?: string | undefined;
-  matches: Match[];
+  matches: MatchDto[];
 }

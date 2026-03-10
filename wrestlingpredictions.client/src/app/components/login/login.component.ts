@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-    ngOnInit(): void {
-        throw new Error('Method not implemented.');
-    }
+
+  ngOnInit(): void {
+  }
 
   get f() {
     return this.loginForm.controls;

@@ -10,10 +10,8 @@
        class="match-item">
 
 
-    <!-- FLEX ROW -->
     <div class="match-row">
 
-      <!-- LEFT SIDE: Teams -->
       <div class="teams">
 
         <ng-container *ngFor="let team of match.teams; let i = index">
@@ -41,8 +39,7 @@
 
       </div>
 
-      <!-- RIGHT SIDE: Dropdown -->
-      <div class="dropdown">
+      <div class="dropdown" *ngIf="!authService.hasRole('Admin')">
         <button class="btn btn-primary dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown">
@@ -58,16 +55,14 @@
           </li>
         </ul>
       </div>
-
     </div>
-
   </div>
+  <app-add-match-modal [eventId]="eventId" (matchCreated)="loadMatches()" *ngIf="authService.hasRole('Admin')"></app-add-match-modal>
 
-  <div class="save-section" *ngIf="eventDetails.matches.length > 0">
+  <div class="save-section" *ngIf="eventDetails.matches.length > 0 && !authService.hasRole('Admin')">
     <button class="btn btn-success"
             (click)="savePredictions()">
       Save Predictions
     </button>
   </div>
-
 </div>

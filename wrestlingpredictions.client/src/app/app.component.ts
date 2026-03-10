@@ -21,27 +21,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/api/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  getMatch() {
-    this.http.get<any>('/api/match').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
   title = 'wrestlingpredictions.client';
 }

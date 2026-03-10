@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.4829945">
+﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.4829945">
   <PropertyGroup>
     <StartupCommand>npm start</StartupCommand>
     <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
@@ -8,8 +8,6 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\wrestlingpredictions.client\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\app\components\admin pages\" />
-    <Folder Include="src\app\components\prediction-page\event-list\NewFolder\" />
     <Folder Include="src\app\models\team\" />
     <Folder Include="src\app\services\authentication\" />
   </ItemGroup>

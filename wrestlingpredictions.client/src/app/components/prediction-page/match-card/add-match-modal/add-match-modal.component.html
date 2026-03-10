@@ -1,0 +1,101 @@
+<button class="btn btn-success mb-3" (click)="openModal()">
+  Add Match
+</button>
+
+<div class="modal fade show" *ngIf="showModal" style="display:block;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Create Match</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form [formGroup]="matchForm" (ngSubmit)="submitMatch()">
+
+          <!-- Match Name -->
+          <div class="mb-3">
+            <label class="form-label">Match Name</label>
+            <input class="form-control" formControlName="matchName">
+          </div>
+
+          <!-- Teams -->
+          <div formArrayName="teams">
+
+            <div *ngFor="let team of teams.controls; let t = index"
+                 [formGroupName]="t"
+                 class="card mb-3">
+
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <strong>Team {{t + 1}}</strong>
+
+                <button type="button"
+                        class="btn btn-sm btn-danger"
+                        (click)="removeTeam(t)">
+                  Remove Team
+                </button>
+              </div>
+
+              <div class="card-body">
+
+                <div formArrayName="participants">
+
+                  <div *ngFor="let participant of getParticipants(t).controls; let p = index"
+                       [formGroupName]="p"
+                       class="d-flex mb-2">
+
+                    <input class="form-control me-2"
+                           formControlName="name"
+                           placeholder="Participant name">
+
+                    <button type="button"
+                            class="btn btn-danger"
+                            (click)="removeParticipant(t, p)">
+                      ✕
+                    </button>
+
+                  </div>
+
+                </div>
+
+                <button type="button"
+                        class="btn btn-outline-primary"
+                        (click)="addParticipant(t)">
+                  + Add Participant
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <button type="button"
+                  class="btn btn-outline-secondary mb-3"
+                  (click)="addTeam()">
+            + Add Team
+          </button>
+
+          <div class="modal-footer">
+
+            <button type="button"
+                    class="btn btn-secondary"
+                    (click)="closeModal()">
+              Cancel
+            </button>
+
+            <button type="submit"
+                    class="btn btn-success">
+              Create Match
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

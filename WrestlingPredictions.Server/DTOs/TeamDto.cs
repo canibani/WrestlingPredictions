@@ -1,6 +1,4 @@
-﻿using WrestlingPredictions.Server.Src.Domain.Entities;
-
-namespace WrestlingPredictions.Server.DTOs
+﻿namespace WrestlingPredictions.Server.DTOs
 {
     public class TeamDto
     {

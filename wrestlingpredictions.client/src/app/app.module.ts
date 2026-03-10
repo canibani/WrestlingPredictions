@@ -1,7 +1,6 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PredictionPageComponent } from './components/prediction-page/prediction-page.component';
@@ -11,7 +10,9 @@ import { MatchCardComponent } from './components/prediction-page/match-card/matc
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
-import { AuthinceptorInterceptor } from './authinceptor.interceptor';
+import { AuthinceptorInterceptor } from './core/authinceptor.interceptor';
+import { AddEventModalComponent } from './components/prediction-page/event-list/add-event-modal/add-event-modal.component';
+import { AddMatchModalComponent } from './components/prediction-page/match-card/add-match-modal/add-match-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import { AuthinceptorInterceptor } from './authinceptor.interceptor';
     MatchCardComponent,
     LoginComponent,
     RegisterComponent,
+    AddEventModalComponent,
+    AddMatchModalComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, ReactiveFormsModule

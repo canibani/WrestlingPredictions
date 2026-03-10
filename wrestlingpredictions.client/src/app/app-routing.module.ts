@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { PredictionPageComponent } from './components/prediction-page/prediction-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AuthGuard } from './auth.guard';
-import { NotAuthenticatedGuard } from './not-authenticated.guard';
+import { AuthGuard } from './core/auth.guard';
+import { NotAuthenticatedGuard } from './core/not-authenticated.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [NotAuthenticatedGuard] },

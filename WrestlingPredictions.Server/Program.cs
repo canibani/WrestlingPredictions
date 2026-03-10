@@ -59,7 +59,7 @@ builder.Services.AddSwaggerGen(options =>
         Description = "An ASP.NET Core Web API for managing ToDo items",
     });
 
-    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme()
     {
         In = ParameterLocation.Header,
         Description = "Please enter a token",
@@ -69,11 +69,10 @@ builder.Services.AddSwaggerGen(options =>
         Scheme = "bearer"
     });
 
-    options.AddSecurityRequirement(test => new OpenApiSecurityRequirement
+    options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
     {
-        [new OpenApiSecuritySchemeReference("bearer", test)] = []
+        [new OpenApiSecuritySchemeReference("bearer", document)] = []
     });
-
 });
 
 var app = builder.Build();

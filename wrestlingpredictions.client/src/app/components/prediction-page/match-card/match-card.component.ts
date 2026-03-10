@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { EventDetails, MatchesWithPredictions } from '../../../models/event-details.model';
-import { Match } from '../../../models/match/match.model';
+import { EventDetails } from '../../../models/event/event-details.model';
+import { MatchesWithPredictions } from "../../../models/event/match-with-predictions";
 import { Team } from '../../../models/team/team.model';
+import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { EventService } from '../../../services/event/event.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class MatchCardComponent implements OnInit {
     matches: []
   };
 
-  private _eventId: string = "";
+  public _eventId: string = "";
   @Input() set eventId(value: string) {
     this._eventId = value;
     if (value) this.loadMatches();
@@ -25,11 +26,10 @@ export class MatchCardComponent implements OnInit {
   get eventId(): string {
     return this._eventId;
   }
-  constructor(private eventService: EventService) { }
 
-  ngOnInit(): void {
+  constructor(public authService: AuthenticationService, private eventService: EventService) { }
 
-  }
+  ngOnInit(): void { }
 
   trackByMatchId(index: number, match: MatchesWithPredictions): string {
     return match.matchId;
@@ -56,8 +56,7 @@ export class MatchCardComponent implements OnInit {
       return team.teamName;
     }
 
-    return team.participants
-      .join(', ');
+    return team.participants.join(', ');
   }
 
   //hasAnySelection(): boolean {
@@ -68,7 +67,6 @@ export class MatchCardComponent implements OnInit {
     await this.eventService.getEventById(this.eventId).subscribe({
       next: (data) => {
         this.eventDetails = data;
-        console.log(this.eventDetails);
       },
       error: (err) => {
       }
@@ -76,16 +74,6 @@ export class MatchCardComponent implements OnInit {
   }
 
   savePredictions() {
-
-    //const payload = Object.entries(this.selectedTeams).map(
-    //  ([matchId, teamId]) => ({
-    //    matchId: matchId,
-    //    selectedTeamId: teamId
-    //  })
-    //);
-
-    //console.log('Saving predictions:', payload);
-
     this.eventService.savePredicitions(this.eventDetails.matches).subscribe()
   }
 }
